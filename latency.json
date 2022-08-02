@@ -1,0 +1,222 @@
+{
+    "Convolution1,336,21,21;336,336,1,1;1,336,21,21floatfloatfloatStrides{1, 1}Strides{1, 1}CoordinateDiff{0, 0}": {
+      "name": "Convolution1,336,21,21;336,336,1,1;1,336,21,21floatfloatfloatStrides{1, 1}Strides{1, 1}CoordinateDiff{0, 0}",
+      "10": 95.567,
+      "20": 71.058,
+      "30": 45.298,
+      "40": 40.514,
+      "50": 35.487,
+      "60": 33.683,
+      "70": 33.692,
+      "80": 26.185
+    },
+    "Convolution1,2688,11,11;672,2688,1,1;1,672,11,11floatfloatfloatStrides{1, 1}Strides{1, 1}CoordinateDiff{0, 0}": {
+      "name": "Convolution1,2688,11,11;672,2688,1,1;1,672,11,11floatfloatfloatStrides{1, 1}Strides{1, 1}CoordinateDiff{0, 0}",
+      "10": 455.48,
+      "20": 268.95,
+      "30": 184.43,
+      "40": 157.31,
+      "50": 141.86,
+      "60": 131.53,
+      "70": 133.42,
+      "80": 130.63
+    },
+    "Convolution1,4032,11,11;672,4032,1,1;1,672,11,11floatfloatfloatStrides{1, 1}Strides{1, 1}CoordinateDiff{0, 0}": {
+      "name": "Convolution1,4032,11,11;672,4032,1,1;1,672,11,11floatfloatfloatStrides{1, 1}Strides{1, 1}CoordinateDiff{0, 0}",
+      "10": 796.69,
+      "20": 427.32,
+      "30": 294.87,
+      "40": 259.32,
+      "50": 224.45,
+      "60": 192.04,
+      "70": 192.25,
+      "80": 190.75
+    },
+    "Convolution1,1008,42,42;168,1008,1,1;1,168,42,42floatfloatfloatStrides{1, 1}Strides{1, 1}CoordinateDiff{0, 0}": {
+      "name": "Convolution1,1008,42,42;168,1008,1,1;1,168,42,42floatfloatfloatStrides{1, 1}Strides{1, 1}CoordinateDiff{0, 0}",
+      "10": 398.88,
+      "20": 229.05,
+      "30": 156.15,
+      "40": 152.09,
+      "50": 130.75,
+      "60": 119.59,
+      "70": 116.07,
+      "80": 114.98
+    },
+    "Convolution1,42,83,83;42,42,1,1;1,42,83,83floatfloatfloatStrides{1, 1}Strides{1, 1}CoordinateDiff{0, 0}": {
+      "name": "Convolution1,42,83,83;42,42,1,1;1,42,83,83floatfloatfloatStrides{1, 1}Strides{1, 1}CoordinateDiff{0, 0}",
+      "10": 44.338,
+      "20": 27.382,
+      "30": 22.217,
+      "40": 19.564,
+      "50": 17.299,
+      "60": 16.547,
+      "70": 16.335,
+      "80": 13.631
+    },
+    "Convolution1,1008,21,21;168,1008,1,1;1,168,21,21floatfloatfloatStrides{1, 1}Strides{1, 1}CoordinateDiff{0, 0}": {
+      "name": "Convolution1,1008,21,21;168,1008,1,1;1,168,21,21floatfloatfloatStrides{1, 1}Strides{1, 1}CoordinateDiff{0, 0}",
+      "10": 242.48,
+      "20": 124.76,
+      "30": 99.829,
+      "40": 91.243,
+      "50": 77.65,
+      "60": 72.869,
+      "70": 73.455,
+      "80": 67.574
+    },
+    "Convolution1,2016,11,11;336,2016,1,1;1,336,11,11floatfloatfloatStrides{1, 1}Strides{1, 1}CoordinateDiff{0, 0}": {
+      "name": "Convolution1,2016,11,11;336,2016,1,1;1,336,11,11floatfloatfloatStrides{1, 1}Strides{1, 1}CoordinateDiff{0, 0}",
+      "10": 231.94,
+      "20": 124.22,
+      "30": 94.136,
+      "40": 86.646,
+      "50": 77.02,
+      "60": 65.926,
+      "70": 66.514,
+      "80": 64.671
+    },
+    "Convolution1,168,42,42;168,168,1,1;1,168,42,42floatfloatfloatStrides{1, 1}Strides{1, 1}CoordinateDiff{0, 0}": {
+      "name": "Convolution1,168,42,42;168,168,1,1;1,168,42,42floatfloatfloatStrides{1, 1}Strides{1, 1}CoordinateDiff{0, 0}",
+      "10": 79.509,
+      "20": 41.663,
+      "30": 34.565,
+      "40": 30.851,
+      "50": 27.142,
+      "60": 25.187,
+      "70": 24.655,
+      "80": 22.665
+    },
+    "Convolution1,2016,21,21;672,2016,1,1;1,672,21,21floatfloatfloatStrides{1, 1}Strides{1, 1}CoordinateDiff{0, 0}": {
+      "name": "Convolution1,2016,21,21;672,2016,1,1;1,672,21,21floatfloatfloatStrides{1, 1}Strides{1, 1}CoordinateDiff{0, 0}",
+      "10": 539.33,
+      "20": 369.52,
+      "30": 270.89,
+      "40": 240.4,
+      "50": 216.33,
+      "60": 186.35,
+      "70": 182.99,
+      "80": 149.06
+    },
+    "Convolution1,168,42,42;84,168,1,1;1,84,42,42floatfloatfloatStrides{1, 1}Strides{1, 1}CoordinateDiff{0, 0}": {
+      "name": "Convolution1,168,42,42;84,168,1,1;1,84,42,42floatfloatfloatStrides{1, 1}Strides{1, 1}CoordinateDiff{0, 0}",
+      "10": 45.567,
+      "20": 29.535,
+      "30": 22.879,
+      "40": 22.94,
+      "50": 21.926,
+      "60": 20.608,
+      "70": 20.969,
+      "80": 16.262
+    },
+    "Convolution1,84,42,42;84,84,1,1;1,84,42,42floatfloatfloatStrides{1, 1}Strides{1, 1}CoordinateDiff{0, 0}": {
+      "name": "Convolution1,84,42,42;84,84,1,1;1,84,42,42floatfloatfloatStrides{1, 1}Strides{1, 1}CoordinateDiff{0, 0}",
+      "10": 30.335,
+      "20": 22.994,
+      "30": 16.754,
+      "40": 14.041,
+      "50": 13.615,
+      "60": 12.694,
+      "70": 12.431,
+      "80": 11.145
+    },
+    "Convolution1,3,331,331;96,3,3,3;1,96,165,165floatfloatfloatStrides{2, 2}Strides{1, 1}CoordinateDiff{0, 0}": {
+      "name": "Convolution1,3,331,331;96,3,3,3;1,96,165,165floatfloatfloatStrides{2, 2}Strides{1, 1}CoordinateDiff{0, 0}",
+      "10": 119.07,
+      "20": 62.335,
+      "30": 51.708,
+      "40": 41.02,
+      "50": 37.893,
+      "60": 34.386,
+      "70": 32.876,
+      "80": 30.905
+    },
+    "Convolution1,672,11,11;672,672,1,1;1,672,11,11floatfloatfloatStrides{1, 1}Strides{1, 1}CoordinateDiff{0, 0}": {
+      "name": "Convolution1,672,11,11;672,672,1,1;1,672,11,11floatfloatfloatStrides{1, 1}Strides{1, 1}CoordinateDiff{0, 0}",
+      "10": 131.25,
+      "20": 79.164,
+      "30": 62.501,
+      "40": 50.575,
+      "50": 44.502,
+      "60": 41.519,
+      "70": 41.132,
+      "80": 40.553
+    },
+    "Convolution1,168,83,83;84,168,1,1;1,84,83,83floatfloatfloatStrides{1, 1}Strides{1, 1}CoordinateDiff{0, 0}": {
+      "name": "Convolution1,168,83,83;84,168,1,1;1,84,83,83floatfloatfloatStrides{1, 1}Strides{1, 1}CoordinateDiff{0, 0}",
+      "10": 136.02,
+      "20": 75.227,
+      "30": 55.471,
+      "40": 53.775,
+      "50": 45.986,
+      "60": 39.356,
+      "70": 39.983,
+      "80": 39.247
+    },
+    "Convolution1,96,165,165;42,96,1,1;1,42,165,165floatfloatfloatStrides{1, 1}Strides{1, 1}CoordinateDiff{0, 0}": {
+      "name": "Convolution1,96,165,165;42,96,1,1;1,42,165,165floatfloatfloatStrides{1, 1}Strides{1, 1}CoordinateDiff{0, 0}",
+      "10": 126.36,
+      "20": 80.76,
+      "30": 63.11,
+      "40": 58.332,
+      "50": 58.22,
+      "60": 46.93,
+      "70": 46.015,
+      "80": 44.963
+    },
+    "Convolution1,1344,21,21;336,1344,1,1;1,336,21,21floatfloatfloatStrides{1, 1}Strides{1, 1}CoordinateDiff{0, 0}": {
+      "name": "Convolution1,1344,21,21;336,1344,1,1;1,336,21,21floatfloatfloatStrides{1, 1}Strides{1, 1}CoordinateDiff{0, 0}",
+      "10": 281.95,
+      "20": 177.12,
+      "30": 143.27,
+      "40": 114.79,
+      "50": 113.79,
+      "60": 96.267,
+      "70": 91.586,
+      "80": 79.068
+    },
+    "Convolution1,96,83,83;42,96,1,1;1,42,83,83floatfloatfloatStrides{1, 1}Strides{1, 1}CoordinateDiff{0, 0}": {
+      "name": "Convolution1,96,83,83;42,96,1,1;1,42,83,83floatfloatfloatStrides{1, 1}Strides{1, 1}CoordinateDiff{0, 0}",
+      "10": 52.578,
+      "20": 34.124,
+      "30": 28.006,
+      "40": 23.228,
+      "50": 23.215,
+      "60": 20.006,
+      "70": 19.83,
+      "80": 19.456
+    },
+    "Convolution1,1008,42,42;336,1008,1,1;1,336,42,42floatfloatfloatStrides{1, 1}Strides{1, 1}CoordinateDiff{0, 0}": {
+      "name": "Convolution1,1008,42,42;336,1008,1,1;1,336,42,42floatfloatfloatStrides{1, 1}Strides{1, 1}CoordinateDiff{0, 0}",
+      "10": 691.38,
+      "20": 340.55,
+      "30": 309.84,
+      "40": 203.09,
+      "50": 212.97,
+      "60": 174.88,
+      "70": 169.69,
+      "80": 149.65
+    },
+    "Convolution1,336,42,42;168,336,1,1;1,168,42,42floatfloatfloatStrides{1, 1}Strides{1, 1}CoordinateDiff{0, 0}": {
+      "name": "Convolution1,336,42,42;168,336,1,1;1,168,42,42floatfloatfloatStrides{1, 1}Strides{1, 1}CoordinateDiff{0, 0}",
+      "10": 128.54,
+      "20": 82.386,
+      "30": 60.479,
+      "40": 56.325,
+      "50": 50.422,
+      "60": 44.956,
+      "70": 43.362,
+      "80": 43.18
+    },
+    "Convolution1,2016,21,21;336,2016,1,1;1,336,21,21floatfloatfloatStrides{1, 1}Strides{1, 1}CoordinateDiff{0, 0}": {
+      "name": "Convolution1,2016,21,21;336,2016,1,1;1,336,21,21floatfloatfloatStrides{1, 1}Strides{1, 1}CoordinateDiff{0, 0}",
+      "10": 537.53,
+      "20": 286.39,
+      "30": 209.6,
+      "40": 150.35,
+      "50": 158.3,
+      "60": 132.8,
+      "70": 135.38,
+      "80": 111.5
+    }
+  }

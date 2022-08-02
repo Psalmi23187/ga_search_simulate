@@ -7,38 +7,35 @@ from model_config_nasnet_imagenet_cell_1 import op_runtime_table, get_op_runtime
 
 
 class Simulator:
-    def __init__(self, layer_schedule, sm_count, operator_runtime, topology=None):
-        self.operator_count = 200
+    def __init__(self, layer_schedule, pe_num, gnodes):
         self.layer_schedule = layer_schedule
-        self.sm_count = sm_count
-        self.operator_runtime = operator_runtime
-        self.topology = topology
+        self.pe_num = pe_num
+        self.gnodes = gnodes
 
         self.sm_info = {}
-        for i in range(self.sm_count):
+        for i in range(self.pe_num):
             self.sm_info[i] = {
                 "sm_id": i,
                 "last_used_time": 0,
                 "status": "unused"
             }
 
-        self.operator_info = {}
-        for i in range(self.operator_count):
-            self.operator_info[i] = {
-                "operator_id": i,
+        self.op_info = {}
+        for idx in range(len(self.gnodes)):
+            self.op_info[idx] = {
+                "operator_id": idx,
                 "begin_time": -1,
                 'sm_used': 0,
-                "runtime": operator_runtime[op_id_to_type(i)],
-                #"father_id": self.topology[i],
+                "latency": gnodes[idx].latency,
                 "status": "unexecuted"
             }
-        self.unused_sm_count = self.sm_count
+        self.unused_pe_num = self.pe_num
         self.temp_time = 0
         self.temp_layer = -1
 
     def step_sm_allocate(self):
         # min-max method
-        self.unused_sm_count = self.sm_count
+        self.unused_pe_num = self.pe_num
         self.temp_layer += 1
         if self.temp_layer >= len(self.layer_schedule):
             return
@@ -54,37 +51,37 @@ class Simulator:
 
         if len(current_step_schedule_list) == 0:
             return
-        if self.sm_count < len(current_step_schedule_list):
-            print("warning, sm_count too few, could not support entirely parallel!")
+        if self.pe_num < len(current_step_schedule_list):
+            print("warning, pe_num too few, could not support entirely parallel!")
             return
 
         for op_id in current_step_schedule_list:
             #if op_id_to_type(op_id) not in [-2,-3]:
-            self.operator_info[op_id]["sm_used"] = 1
-            self.unused_sm_count -= 1
+            self.op_info[op_id]["sm_used"] = 1
+            self.unused_pe_num -= 1
         
-        while(self.unused_sm_count >= 1):
+        while(self.unused_pe_num >= 1):
             temp_id = current_step_schedule_list[0]
-            temp_max_runtime = get_op_runtime(temp_id, self.operator_info[temp_id]["sm_used"])
+            temp_max_runtime = get_op_runtime(temp_id, self.op_info[temp_id]["sm_used"])
             for op_id in current_step_schedule_list[1:]:
-                if self.operator_info[op_id]["sm_used"] >= 80:
+                if self.op_info[op_id]["sm_used"] >= 80:
                     continue
-                if temp_max_runtime < get_op_runtime(op_id, self.operator_info[op_id]["sm_used"]):
+                if temp_max_runtime < get_op_runtime(op_id, self.op_info[op_id]["sm_used"]):
                     temp_id = op_id
-                    temp_max_runtime  = get_op_runtime(op_id, self.operator_info[op_id]["sm_used"])
-            if self.operator_info[temp_id]["sm_used"] >= 80:
+                    temp_max_runtime  = get_op_runtime(op_id, self.op_info[op_id]["sm_used"])
+            if self.op_info[temp_id]["sm_used"] >= 80:
                 break
             else:
-                self.operator_info[temp_id]["sm_used"] += 1
-                self.unused_sm_count -= 1
+                self.op_info[temp_id]["sm_used"] += 1
+                self.unused_pe_num -= 1
         
         for op_id in current_step_schedule_list:
             pass
 
-        step_max_runtime = get_op_runtime(current_step_schedule_list[0], self.operator_info[current_step_schedule_list[0]]["sm_used"])
+        step_max_runtime = get_op_runtime(current_step_schedule_list[0], self.op_info[current_step_schedule_list[0]]["sm_used"])
         for op_id in current_step_schedule_list[1:]:
-            if step_max_runtime < get_op_runtime(op_id, self.operator_info[op_id]["sm_used"]):
-                step_max_runtime = get_op_runtime(op_id, self.operator_info[op_id]["sm_used"])
+            if step_max_runtime < get_op_runtime(op_id, self.op_info[op_id]["sm_used"]):
+                step_max_runtime = get_op_runtime(op_id, self.op_info[op_id]["sm_used"])
         #if step_max_runtime  > 0:
         #    print(step_max_runtime)
         #print("layer: ", self.temp_layer, " . layer runtime: ", step_max_runtime)
