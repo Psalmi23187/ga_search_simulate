@@ -5,13 +5,21 @@ def get_bfs_level(dependency):
     length = len(dependency)
     tag_visited = [0 for i in range(length)]
     bfs_result = [-1 for i in range(length)]
+    """for i in range(length):
+        if dependency[i] == [-2]:
+            bfs_result[i] = -20
+            tag_visited[i] = 1"""
     temp_count = 0
     while 0 in tag_visited:
         temp_count += 1
-        if temp_count > 5:
-            break
         for op_id in range(length):
             pre_ok = True
+
+            if dependency[op_id][0] == -3:
+                bfs_result[op_id] = 0
+                tag_visited[op_id] = 1
+                continue # Const, initial ready
+
             if dependency[op_id][0] == -1:
                 tag_visited[op_id] = 1
                 bfs_result[op_id] = 0
@@ -36,9 +44,15 @@ def combine_bfs_bias_to_schedule(bfs, bias, dependency):
     length = len(dependency)
     ops_stage = [0 for i in range(length)]
     tag_visited = [0 for i in range(length)]
+    
     while 0 in tag_visited:
         for op_id in range(length):
             pre_ok = True
+            if dependency[op_id][0] == -3:
+                ops_stage[op_id] = 0 # 好像没必要+bias
+                tag_visited[op_id] = 1
+                continue # Const, initial ready
+            
             if dependency[op_id][0] == -1:
                 ops_stage[op_id] = bias[op_id]
                 tag_visited[op_id] = 1
