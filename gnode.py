@@ -1,5 +1,6 @@
 import re
 import json
+import math
 
 sn = {
     "Convolution":"C",
@@ -44,7 +45,7 @@ class GNode:
         self.latency = latency # dict
 
     def estimate_latency(self, resource):
-        return self.latency[math.ceil(resource / 10)]
+        return self.latency[str(math.ceil(resource / 10)*10)]
 
     def print_info(self):
         print("id:{}".format(self.id))
@@ -104,50 +105,47 @@ def gen_key(data, dtype="float"):
     return key
 
 
-gnodes = []
-gid_map = {} # gid2id map
-id = 0
-with open('nasnet_imagenet_large.txt') as f:
-    lines = f.readlines()
-    for line in lines:
-        if line[0] == 'i':
-            gid = int(line.split('id:')[1].split(',')[0])
-            op_type = line.split('type:')[1].split(',')[0]
-            identifier = line.split('identifier:')[1].split('\n')[0]
-            gnodes.append(GNode(id, gid, sn[op_type]+'_'+str(gid), op_type, identifier))
-            gid_map[gid] = id
-            id += 1
+def load_gnodes(file):
+    gnodes = []
+    gid_map = {} # gid2id map
+    id = 0
+    with open(file) as f:
+        lines = f.readlines()
+        for line in lines:
+            if line[0] == 'i':
+                gid = int(line.split('id:')[1].split(',')[0])
+                op_type = line.split('type:')[1].split(',')[0]
+                identifier = line.split('identifier:')[1].split('\n')[0]
+                gnodes.append(GNode(id, gid, sn[op_type]+'_'+str(gid), op_type, identifier))
+                gid_map[gid] = id
+                id += 1
 
-    for line in lines:
-        if line[0] == 'i':
-            gid = int(line.split('id:')[1].split(',')[0])
-            id = gid_map[gid]
-        elif line[:7] == '\toutput':
-            output_gid = int(line.split(':')[1].split(',')[0])
-            gnodes[id].add_dst(gid_map[output_gid])
-    
+        for line in lines:
+            if line[0] == 'i':
+                gid = int(line.split('id:')[1].split(',')[0])
+                id = gid_map[gid]
+            elif line[:7] == '\toutput':
+                output_gid = int(line.split(':')[1].split(',')[0])
+                gnodes[id].add_dst(gid_map[output_gid])
+        
 
-for idx in range(len(gnodes)):
-    for idy in range(len(gnodes)):
-        if idx in gnodes[idy].dst and idy not in gnodes[idx].src:
-            gnodes[idx].add_src(idy)
+    for idx in range(len(gnodes)):
+        for idy in range(len(gnodes)):
+            if idx in gnodes[idy].dst and idy not in gnodes[idx].src:
+                gnodes[idx].add_src(idy)
 
-jf = open('latency.json')
-data = json.load(jf)
-print(type(data))
+    jf = open('latency.json')
+    data = json.load(jf)
 
-# with open("latency.json",'r', encoding='UTF-8') as f:
-#      load_dict = json.load(f)
-#      print(type(load_dict))
+    for gnode in gnodes:
+        if gnode.identifier in data:
+            gnode.set_latency(data[gnode.identifier])
+            # print('Latency')
+        else:
+            # print('Not profiled OP, use default profile results')
+            gnode.set_latency({'10':3, '20':3, '30':3, '40':3, '50':3, '60':3, '70':3, '80':3})
 
-for gnode in gnodes:
-    if gnode.identifier in data:
-        gnode.set_latency(data[gnode.identifier])
-        # print('Latency')
-    else:
-        # print('Not profiled OP, use default profile results')
-        gnode.set_latency({10:3, 20:3, 30:3, 40:3, 50:3, 60:3, 70:3, 80:3})
-
-for gnode in gnodes:
-    # if gnode.type == 'Convolution':
-    gnode.print_info()
+    # for gnode in gnodes:
+    #     if gnode.type == 'Convolution':
+    #         gnode.print_info()
+    return gnodes
