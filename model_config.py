@@ -1,5 +1,7 @@
 def get_op_runtime(op_id, sm_used):
     op_type = op_id_to_type(op_id)
+    if op_type == -1: # special case in nasnet_cifar_cell_0
+        return 2
     if sm_used % 10 == 0:
         return op_runtime_table[op_type][sm_used]
     else:
