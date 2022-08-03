@@ -16,11 +16,11 @@ chromosome: bias on bfs
 """
 
 parser = argparse.ArgumentParser()
-parser.add_argument('--iteration_times', type=int, default=100)
-parser.add_argument('--solution_per_population', type=int, default=300)
-parser.add_argument('--saved_parents_per_population', type=int, default=30)
-parser.add_argument('--mating_parents_per_population', type=int, default=20)
-parser.add_argument('--mutation_per_population', type=int, default=20)
+parser.add_argument('--iteration_times', type=int, default=30)
+parser.add_argument('--solution_per_population', type=int, default=30)
+parser.add_argument('--saved_parents_per_population', type=int, default=10)
+parser.add_argument('--mating_parents_per_population', type=int, default=10)
+parser.add_argument('--mutation_per_population', type=int, default=10)
 args = parser.parse_args()
 
 
@@ -130,47 +130,53 @@ if __name__ == '__main__':
 
 
     print("\niteration ended")
+    generation_count = 0
     for solution in best_solution_per_generation:
         latency = solution[0]
         schedule = combine_bfs_bias_to_schedule(bfs, solution[1], gnodes)[1]
+        # print(schedule)
         count = 0
         fix_schedule = []
         for layer in schedule:
             fix_layer = []
             for op in layer:
-                if op_id_to_type(op) not in [-2,-3]:
+                if gnodes[op].type in ["Convolution","DepthwiseConv2dNative"]:
                     fix_layer.append(op)
             if len(fix_layer) != 0:
                 fix_schedule.append(fix_layer)
         if solution[0] == temp_min_latency[0]:
             temp_best_schedule = fix_schedule
             temp_best_chromosome = solution[1]
-        print("latency: ", solution[0], " schedule: ", fix_schedule)
+        print("latency: ", solution[0], " generation: ", generation_count)
+        generation_count += 1
 
-        bias = [0 for i in range(len(bfs))]
-        schedule = combine_bfs_bias_to_schedule(bfs, bias, gnodes)[1]
-        latency = fitness_func(schedule, gnodes)
+    bias = [0 for i in range(len(bfs))]
+    schedule = combine_bfs_bias_to_schedule(bfs, bias, gnodes)[1]
+    latency = fitness_func(schedule, gnodes)
 
-        fix_schedule = []
-        for layer in schedule:
-            fix_layer = []
-            for op in layer:
-                if op_id_to_type(op) not in [-2,-3]:
-                    fix_layer.append(op)
-            if len(fix_layer) != 0:
-                fix_schedule.append(fix_layer)
-        print("compare with bfs schedule", '-'*150) 
-        print("latency: ", latency, " schedule: ", fix_schedule)
-        print('-'*150)
-        print("chromosome: ", bias)
-        print('-'*150)
-        print("whole schedule: ", combine_bfs_bias_to_schedule(bfs, bias, gnodes)[1])
+    fix_schedule = []
+    for layer in schedule:
+        fix_layer = []
+        for op in layer:
+            if gnodes[op].type in ["Convolution","DepthwiseConv2dNative"]:
+                fix_layer.append(op)
+        if len(fix_layer) != 0:
+            fix_schedule.append(fix_layer)
+    print("compare with bfs schedule", '-'*150) 
+    print("latency: ", latency)
+    """print("latency: ", latency, " schedule: ", fix_schedule)
+    print('-'*150)
+    print("chromosome: ", bias)
+    print('-'*150)
+    print("whole schedule: ", combine_bfs_bias_to_schedule(bfs, bias, gnodes)[1])
 
-        print()
+    print()"""
 
-        print("compare with the best schedule", '-'*150)
-        print("latency: ", temp_min_latency, " schedule: ", temp_best_schedule)
-        print('-'*150)
-        print("chromosome: ", temp_best_chromosome)
-        print('-'*150)
-        print("whole schedule: ", combine_bfs_bias_to_schedule(bfs, temp_best_chromosome, gnodes)[1])
+    print("compare with the best schedule", '-'*150)
+    print("latency: ", temp_min_latency)
+    """print("latency: ", temp_min_latency, " schedule: ", temp_best_schedule)
+    print('-'*150)
+    print("chromosome: ", temp_best_chromosome)
+    print('-'*150)
+    print("whole schedule: ", combine_bfs_bias_to_schedule(bfs, temp_best_chromosome, gnodes)[1])"""
+    
