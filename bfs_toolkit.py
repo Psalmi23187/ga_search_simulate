@@ -31,7 +31,7 @@ def get_bfs_level(gnodes):
     return bfs_result
 
 
-def combine_bfs_bias_to_schedule(schedule, bias, gnodes):
+def update_schedule(schedule, bias, gnodes):
     ops_stage = [0 for i in range(len(gnodes))]
     tag_visited = [0 for i in range(len(gnodes))]
     
@@ -65,4 +65,10 @@ def combine_bfs_bias_to_schedule(schedule, bias, gnodes):
     stage_schedule = [[] for i in range(max(ops_stage) + 1)]
     for idx in range(len(gnodes)):
         stage_schedule[ops_stage[idx]].append(idx)
-    return ops_stage, stage_schedule
+    
+    b = list(set(sorted(ops_stage)))
+    fixed_ops_stage = [b.index(a) for a in ops_stage]
+
+    while [] in stage_schedule:
+        stage_schedule.remove([])
+    return fixed_ops_stage, stage_schedule

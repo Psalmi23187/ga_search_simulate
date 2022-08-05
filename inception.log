@@ -1,0 +1,49 @@
+id:2, name:inception_e/concat/axis, type:Constant, identifier:Constant;int32_t
+id:7, name:input, type:Parameter, identifier:Parameter;1,1280,8,8float
+	output nodes id:17, type:Convolution
+	output nodes id:12, type:Convolution
+	output nodes id:15, type:Convolution
+	output nodes id:13, type:AvgPool
+id:12, name:inception_e/inception_e_v3x3dbl_1/conv2d/Conv2D, type:Convolution, identifier:Convolution1,1280,8,8;448,1280,1,1;1,448,8,8floatfloatfloatStrides{1, 1}Strides{1, 1}CoordinateDiff{0, 0}
+	output nodes id:19, type:Convolution
+id:13, name:inception_e/average_pooling2d/AvgPool, type:AvgPool, identifier:AvgPool1,1280,8,8;1,1280,8,8floatfloatShape{3, 3}Strides{1, 1}Shape{1, 1}Shape{1, 1}
+	output nodes id:21, type:Convolution
+id:15, name:inception_e/inception_e_v3x3/conv2d/Conv2D, type:Convolution, identifier:Convolution1,1280,8,8;384,1280,1,1;1,384,8,8floatfloatfloatStrides{1, 1}Strides{1, 1}CoordinateDiff{0, 0}
+	output nodes id:25, type:Convolution
+	output nodes id:23, type:Convolution
+id:17, name:inception_e/inception_e_v1x1/conv2d/Conv2D, type:Convolution, identifier:Convolution1,1280,8,8;320,1280,1,1;1,320,8,8floatfloatfloatStrides{1, 1}Strides{1, 1}CoordinateDiff{0, 0}
+	output nodes id:30, type:Concat
+id:19, name:inception_e/inception_e_v3x3dbl_2/conv2d/Conv2D, type:Convolution, identifier:Convolution1,448,8,8;384,448,3,3;1,384,8,8floatfloatfloatStrides{1, 1}Strides{1, 1}CoordinateDiff{1, 1}
+	output nodes id:27, type:Convolution
+	output nodes id:29, type:Convolution
+id:21, name:inception_e/inception_e_v3x3dblb_1/conv2d/Conv2D, type:Convolution, identifier:Convolution1,1280,8,8;192,1280,1,1;1,192,8,8floatfloatfloatStrides{1, 1}Strides{1, 1}CoordinateDiff{0, 0}
+	output nodes id:30, type:Concat
+id:23, name:inception_e/inception_e_v3x3b/conv2d/Conv2D, type:Convolution, identifier:Convolution1,384,8,8;384,384,3,1;1,384,8,8floatfloatfloatStrides{1, 1}Strides{1, 1}CoordinateDiff{1, 0}
+	output nodes id:30, type:Concat
+id:25, name:inception_e/inception_e_v3x3a/conv2d/Conv2D, type:Convolution, identifier:Convolution1,384,8,8;384,384,1,3;1,384,8,8floatfloatfloatStrides{1, 1}Strides{1, 1}CoordinateDiff{0, 1}
+	output nodes id:30, type:Concat
+id:27, name:inception_e/inception_e_v3x3dbla/conv2d/Conv2D, type:Convolution, identifier:Convolution1,384,8,8;384,384,1,3;1,384,8,8floatfloatfloatStrides{1, 1}Strides{1, 1}CoordinateDiff{0, 1}
+	output nodes id:30, type:Concat
+id:29, name:inception_e/inception_e_v3x3dblb/conv2d/Conv2D, type:Convolution, identifier:Convolution1,384,8,8;384,384,3,1;1,384,8,8floatfloatfloatStrides{1, 1}Strides{1, 1}CoordinateDiff{1, 0}
+	output nodes id:30, type:Concat
+id:30, name:inception_e/concat_0, type:Concat, identifier:Concat1,320,8,8;1,384,8,8;1,384,8,8;1,384,8,8;1,384,8,8;1,192,8,8;1,2048,8,8floatfloatfloatfloatfloatfloatfloat
+	output nodes id:31, type:Result
+id:31, name:Result_31, type:Result, identifier:Result1,2048,8,8;1,2048,8,8floatfloat
+id:32, name:Constant_32, type:Constant, identifier:Constant;384,1280,1,1float
+	output nodes id:15, type:Convolution
+id:33, name:Constant_33, type:Constant, identifier:Constant;320,1280,1,1float
+	output nodes id:17, type:Convolution
+id:34, name:Constant_34, type:Constant, identifier:Constant;384,384,1,3float
+	output nodes id:25, type:Convolution
+id:35, name:Constant_35, type:Constant, identifier:Constant;384,384,1,3float
+	output nodes id:27, type:Convolution
+id:36, name:Constant_36, type:Constant, identifier:Constant;384,384,3,1float
+	output nodes id:29, type:Convolution
+id:37, name:Constant_37, type:Constant, identifier:Constant;448,1280,1,1float
+	output nodes id:12, type:Convolution
+id:38, name:Constant_38, type:Constant, identifier:Constant;384,448,3,3float
+	output nodes id:19, type:Convolution
+id:39, name:Constant_39, type:Constant, identifier:Constant;192,1280,1,1float
+	output nodes id:21, type:Convolution
+id:40, name:Constant_40, type:Constant, identifier:Constant;384,384,3,1float
+	output nodes id:23, type:Convolution
